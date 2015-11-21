@@ -1,6 +1,6 @@
-(defproject om-next-03 "0.1.0-SNAPSHOT"
-  :description "om-next-03"
-  :url "https://github.com/griffio/om-next-03"
+(defproject om-next-04 "0.1.0-SNAPSHOT"
+  :description "om-next-04"
+  :url "https://github.com/griffio/om-next-04"
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
 
@@ -22,17 +22,17 @@
               :builds [{:id           "dev"
                         :source-paths ["src"]
 
-                        :figwheel     {:on-jsload "om-next-03.core/on-js-reload"}
+                        :figwheel     {:on-jsload "om-next-04.core/on-js-reload"}
 
-                        :compiler     {:main                 om-next-03.core
+                        :compiler     {:main                 om-next-04.core
                                        :asset-path           "js/compiled/out"
-                                       :output-to            "resources/public/js/compiled/om_next_03.js"
+                                       :output-to            "resources/public/js/compiled/om_next_04.js"
                                        :output-dir           "resources/public/js/compiled/out"
                                        :source-map-timestamp true}}
                        {:id           "min"
                         :source-paths ["src"]
-                        :compiler     {:output-to     "resources/public/js/compiled/om_next_03.js"
-                                       :main          om-next-03.core
+                        :compiler     {:output-to     "resources/public/js/compiled/om_next_04.js"
+                                       :main          om-next-04.core
                                        :optimizations :advanced
                                        :pretty-print  false}}]}
 

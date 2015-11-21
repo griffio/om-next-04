@@ -5,29 +5,10 @@ body {
     font-size: 14px;
 }
 
-a {
-    color: gold;
-    font-weight: bold;
-}
-
 label {
-    padding: 0 1em;
-    font-size: 1.3em;
+    padding: 1em;
 }
 
-ol {
-    list-style: none;
-    width: 500px;
-    float: left;
-    background: silver;
-}
-
-li {
-    padding: 10px;
-    background: steelblue;
-    color: white;
-}
-
-li.js-dragging {
-    background: coral;
+button {
+    padding: 0 1.5em;
 }

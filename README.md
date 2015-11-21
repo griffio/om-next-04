@@ -1,21 +1,16 @@
-# om-next-03
+# om-next-04
 
 Simple example based around [om-next](https://github.com/omcljs/om/wiki/Quick-Start-%28om.next%29) 
  
-A Drag and Drop list
+use temp ids in client and update by 'remote' data merged into application state
 
-initial xhr load of 'remote' data
-computed event handlers
-local state
-read/mutate queries
+Not finished
 
-(Works in Chrome, Safari and The Fox) 
- 
 [1.0.0-alpha22](https://clojars.org/org.omcljs/om)
 
 ## Overview
 
-![om-next-03.gif](https://raw.githubusercontent.com/griffio/griffio.github.io/master/public/om-next-03.gif)
+Press the 'Do it!' button to update the temporary id with 'remote' id
 
 ## Setup
 
