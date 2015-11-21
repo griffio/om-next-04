@@ -2,9 +2,8 @@
 
 Simple example based around [om-next](https://github.com/omcljs/om/wiki/Quick-Start-%28om.next%29) 
  
-use temp ids in client and update by 'remote' data merged into application state
+Use a temp-id in client and updated by 'remote' :tempids merged into application state.
 
-Not finished
 
 [1.0.0-alpha22](https://clojars.org/org.omcljs/om)
 

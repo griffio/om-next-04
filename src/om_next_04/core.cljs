@@ -19,10 +19,9 @@
 (def temp-id (om/tempid))
 
 (defn reconciler-send []
-  "makes a query to the remote and the result takes a callback to receive json response."
+  "Simulated remote that maps the local temp-id to remote id"
   (fn [re cb]
-    (println re)
-    (cb [['ids {:tempids {[:id temp-id] [:id 109]}}]])))
+    (cb [['ids {:tempids {[:id temp-id] [:id 101]}}]])))    ;; must be in this format
 
 (defui Todo
        static om/Ident
@@ -54,6 +53,7 @@
        (render [this]
                (let [{:keys [todos]} (om/props this)]
                  (apply dom/div nil
+                        (dom/h2 nil "Todo")
                         (map todo todos)))))
 
 (def temp-init-data
@@ -65,7 +65,7 @@
             :title     "Get drink"
             :completed true
             :category  "item"}
-           {:id        temp-id
+           {:id        temp-id                              ;;  e.g #om/id["298c278b-154b-4608-bf5e-9e70b42fc062"]
             :title     "Make dinner"
             :completed false
             :category  "task"}]})
@@ -73,17 +73,22 @@
 (defmulti reading om/dispatch)
 
 (defmethod reading :todos
-  [{:keys [ast path parser query state] :as env} key target]       ;; parsing is a function that recieves env[ast path parser query state] key target
+  [{:keys [ast path parser query state] :as env} key target] ;; parsing is a function that recieves env[ast path parser query state] key target
   (let [st @state]
     {:value (om/db->tree query (get st key) st)}))
 
 (defmulti mutating om/dispatch)
 
 (defmethod mutating 'todos/complete
-  [{:keys [ast path parser query state] :as env} key target]       ;; parsing is a function that recieves env[ast path parser query state] key target
+  [{:keys [ast path parser query state] :as env} key target] ;; parsing is a function that recieves env[ast path parser query state] key target
   {:remote true
    :action
-    (fn [])})
+           (fn []
+             (letfn [(step [state' ref]
+                       (update-in state' ref assoc
+                                  :completed true))]
+               (swap! state
+                      #(reduce step % (:todos %)))))})
 
 (def reconciler
   (om/reconciler
