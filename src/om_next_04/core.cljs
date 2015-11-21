@@ -21,7 +21,7 @@
 (defn reconciler-send []
   "Simulated remote that maps the local temp-id to remote id"
   (fn [re cb]
-    (cb [['foobar {:tempids {[:id temp-id] [:id 101]}}]])))    ;; must be in this format with a symbole at the front!?
+    (cb [['todos/complete {:tempids {[:id temp-id] [:id 101]}}]])))    ;; must be in this format with any symbol at the front
 
 (defui Todo
        static om/Ident
@@ -75,7 +75,7 @@
 (defmethod reading :todos
   [{:keys [ast path parser query state] :as env} key target] ;; parsing is a function that receives env[ast path parser query state] key target
   (let [st @state]
-    {:value (om/db->tree query (get st key) st)}))
+    {:value (om/db->tree query (get st key) st)})) ;; de-normalize, query is [:id :title :completed :category], key is :todos
 
 (defmulti mutating om/dispatch)
 
@@ -84,7 +84,7 @@
   {:remote true
    :action (fn []
              (letfn [(step [state' ref]
-                       (update-in state' ref assoc
+                       (update-in state' ref assoc ;; set all to true
                                   :completed true))]
                (swap! state
                       #(reduce step % (:todos %)))))})
