@@ -1,15 +1,16 @@
 # om-next-04
 
 Simple example based around [om-next](https://github.com/omcljs/om/wiki/Quick-Start-%28om.next%29) 
- 
-Use a temp-id in client and updated by 'remote' :tempids merged into application state.
 
+Experimenting with how/why "temp ids" work by default.
+
+Use a temp-id in client and updated by 'remote' :tempids merged into application state.
 
 [1.0.0-alpha22](https://clojars.org/org.omcljs/om)
 
 ## Overview
 
-Press the 'Do it!' button to update the temporary id with 'remote' id
+![Figwheel Idea Cursive](https://raw.githubusercontent.com/griffio/griffio.github.io/master/public/om-next-04.gif)
 
 ## Setup
 
