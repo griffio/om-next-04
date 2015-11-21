@@ -21,7 +21,7 @@
 (defn reconciler-send []
   "Simulated remote that maps the local temp-id to remote id"
   (fn [re cb]
-    (cb [['ids {:tempids {[:id temp-id] [:id 101]}}]])))    ;; must be in this format
+    (cb [['foobar {:tempids {[:id temp-id] [:id 101]}}]])))    ;; must be in this format with a symbole at the front!?
 
 (defui Todo
        static om/Ident
@@ -73,29 +73,29 @@
 (defmulti reading om/dispatch)
 
 (defmethod reading :todos
-  [{:keys [ast path parser query state] :as env} key target] ;; parsing is a function that recieves env[ast path parser query state] key target
+  [{:keys [ast path parser query state] :as env} key target] ;; parsing is a function that receives env[ast path parser query state] key target
   (let [st @state]
     {:value (om/db->tree query (get st key) st)}))
 
 (defmulti mutating om/dispatch)
 
 (defmethod mutating 'todos/complete
-  [{:keys [ast path parser query state] :as env} key target] ;; parsing is a function that recieves env[ast path parser query state] key target
+  [{:keys [ast path parser query state] :as env} key target] ;; parsing is a function that receives env[ast path parser query state] key target
   {:remote true
-   :action
-           (fn []
+   :action (fn []
              (letfn [(step [state' ref]
                        (update-in state' ref assoc
                                   :completed true))]
                (swap! state
                       #(reduce step % (:todos %)))))})
 
+;; uses default-merge behaviour
 (def reconciler
   (om/reconciler
     {:state  temp-init-data                                 ;; 'raw' init data will be normalized to db type
      :parser (om/parser {:read reading :mutate mutating})
      :send   (reconciler-send)
-     :id-key :id}))
+     :id-key :id}));; used by temp-ids merge behaviour
 
 (om/add-root! reconciler Todos (gdom/getElement "ui"))
 
