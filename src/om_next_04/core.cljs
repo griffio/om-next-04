@@ -16,12 +16,15 @@
 
 (println "Edits to this text should show up in your developer console.")
 
-(def temp-id (om/tempid))
-
 (defn reconciler-send []
   "Simulated remote that maps the local temp-id to remote id"
-  (fn [re cb]
-    (cb [['todos/complete {:tempids {[:id temp-id] [:id 101]}}]])))    ;; must be in this format with any symbol at the front
+  (fn [remotes callback]
+    ;;{:remote [(todos/complete [:id #om/id["a2ef6b16-5b06-4d36-9031-188ebdc3fd14"]])]}
+    (let [{:keys [remote]} remotes
+          ;;{:type :root, :children [{:dispatch-key todos/complete, :key todos/complete, :params {:id #om/id["e45bb8ea-b861-45bf-bb6b-45eb7e919795"]}, :type :call}]}
+          {[children] :children} (om.next/query->ast remote)
+          temp-id (get-in children [:params :id])]
+      (callback [['key {:tempids {[:id temp-id] [:id 101]}}]])))) ;; return id for merge - must be in this format with 'symbol at the front
 
 (defui Todo
        static om/Ident
@@ -65,7 +68,7 @@
             :title     "Get drink"
             :completed true
             :category  "item"}
-           {:id        temp-id                              ;;  e.g #om/id["298c278b-154b-4608-bf5e-9e70b42fc062"]
+           {:id        (om/tempid)                          ;;  e.g #om/id["298c278b-154b-4608-bf5e-9e70b42fc062"]
             :title     "Make dinner"
             :completed false
             :category  "task"}]})
@@ -75,7 +78,7 @@
 (defmethod reading :todos
   [{:keys [ast path parser query state] :as env} key target] ;; parsing is a function that receives env[ast path parser query state] key target
   (let [st @state]
-    {:value (om/db->tree query (get st key) st)})) ;; de-normalize, query is [:id :title :completed :category], key is :todos
+    {:value (om/db->tree query (get st key) st)}))          ;; de-normalize, query is [:id :title :completed :category], key is :todos
 
 (defmulti mutating om/dispatch)
 
@@ -84,7 +87,7 @@
   {:remote true
    :action (fn []
              (letfn [(step [state' ref]
-                       (update-in state' ref assoc ;; set all to true
+                       (update-in state' ref assoc          ;; set all to true
                                   :completed true))]
                (swap! state
                       #(reduce step % (:todos %)))))})
@@ -95,7 +98,7 @@
     {:state  temp-init-data                                 ;; 'raw' init data will be normalized to db type
      :parser (om/parser {:read reading :mutate mutating})
      :send   (reconciler-send)
-     :id-key :id}));; used by temp-ids merge behaviour
+     :id-key :id}))                                         ;; used by temp-ids merge behaviour
 
 (om/add-root! reconciler Todos (gdom/getElement "ui"))
 
