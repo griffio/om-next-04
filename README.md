@@ -6,7 +6,7 @@ Experimenting with how/why "temp ids" work by default.
 
 Use a temp-id in client and updated by 'remote' :tempids merged into application state.
 
-[1.0.0-alpha22](https://clojars.org/org.omcljs/om)
+[1.0.0-alpha23](https://clojars.org/org.omcljs/om)
 
 ## Overview
 
