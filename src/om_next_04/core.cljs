@@ -38,9 +38,8 @@
                (let [{:keys [id title completed category]} (om/props this)]
                  (dom/div nil
                           (dom/h3 nil (str title " : (" id ")"))
-                          (when completed
-                            (dom/label nil "Done!"))
-                          (when-not completed
+                          (if completed
+                            (dom/label nil "Done!")
                             (dom/button #js {:onClick
                                              (fn [_] (om/transact! this `[(todos/complete [:id ~id])]))}
                                         "Do it!"))
