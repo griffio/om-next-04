@@ -24,7 +24,7 @@
           ;;{:type :root, :children [{:dispatch-key todos/complete, :key todos/complete, :params {:id #om/id["e45bb8ea-b861-45bf-bb6b-45eb7e919795"]}, :type :call}]}
           {[children] :children} (om.next/query->ast remote)
           temp-id (get-in children [:params :id])]
-      (callback [['key {:tempids {[:id temp-id] [:id 101]}}]])))) ;; return id for merge - must be in this format with 'symbol at the front
+      (callback [['todos/complete {:tempids {[:id temp-id] [:id 101]}}]])))) ;; return id for merge - must be in this format with 'symbol at the front
 
 (defui Todo
        static om/Ident
