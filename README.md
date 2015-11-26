@@ -8,7 +8,7 @@ Use a temp-id in client and updated by 'remote' :tempids merged into application
 
 Shows extracting query expression from om.next/query->ast
 
-[1.0.0-alpha23](https://clojars.org/org.omcljs/om)
+[1.0.0-alpha24](https://clojars.org/org.omcljs/om)
 
 ## Overview
 

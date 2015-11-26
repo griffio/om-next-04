@@ -21,8 +21,8 @@
   (fn [remotes callback]
     ;;{:remote [(todos/complete [:id #om/id["a2ef6b16-5b06-4d36-9031-188ebdc3fd14"]])]}
     (let [{:keys [remote]} remotes
-          ;;{:type :root, :children [{:dispatch-key todos/complete, :key todos/complete, :params {:id #om/id["e45bb8ea-b861-45bf-bb6b-45eb7e919795"]}, :type :call}]}
           {[children] :children} (om.next/query->ast remote)
+          ;;{:type :root, :children [{:dispatch-key todos/complete, :key todos/complete, :params {:id #om/id["e45bb8ea-b861-45bf-bb6b-45eb7e919795"]}, :type :call}]}
           temp-id (get-in children [:params :id])]
       (callback [['todos/complete {:tempids {[:id temp-id] [:id 101]}}]])))) ;; return id for merge - must be in this format with 'symbol at the front
 
