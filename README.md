@@ -2,7 +2,7 @@
 
 Simple example based around [om-next](https://github.com/omcljs/om/wiki/Quick-Start-%28om.next%29) 
 
-Experimenting with how/why "temp ids" work by default.
+Experimenting with how/why "temp ids" work by default. **This is not an example of how remote hosts work**.
 
 Use a temp-id in client and updated by 'remote' :tempids merged into application state.
 
