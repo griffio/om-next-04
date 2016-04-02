@@ -10,8 +10,8 @@ Use a temp-id generated in client and then updated by 'remote', :tempids merged 
 
 Shows extracting query expression from om.next/query->ast.
 
-[1.0.0-alpha30](https://clojars.org/org.omcljs/om)
-``
+[1.0.0-alpha32](https://clojars.org/org.omcljs/om)
+
 ## Overview
 
 ![Figwheel Idea Cursive](https://raw.githubusercontent.com/griffio/griffio.github.io/master/public/om-next-04.gif)
@@ -50,6 +50,6 @@ get live reloading, nor a REPL.
 
 ## License
 
-Copyright © 2015 
+Copyright © 2016
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
