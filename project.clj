@@ -6,7 +6,7 @@
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.8.40"]
-                 [org.omcljs/om "1.0.0-alpha32"]
+                 [org.omcljs/om "1.0.0-alpha34"]
                  [org.clojure/test.check "0.8.2"]
                  [com.cognitect/transit-cljs "0.8.225"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
