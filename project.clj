@@ -6,10 +6,10 @@
 
   :dependencies [[org.clojure/clojure "1.8.0" :scope "provided"]
                  [org.clojure/clojurescript "1.9.89" :scope "provided"]
-                 [com.cognitect/transit-cljs "0.8.225"]
+                 [com.cognitect/transit-cljs "0.8.239"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [org.omcljs/om "1.0.0-alpha41"]
-                 [figwheel-sidecar "0.5.4-3" :scope "test"]]
+                 [org.omcljs/om "1.0.0-alpha44"]
+                 [figwheel-sidecar "0.5.7" :scope "test"]]
 
   :plugins [[lein-cljsbuild "1.1.3"]]
 
