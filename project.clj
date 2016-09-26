@@ -8,7 +8,7 @@
                  [org.clojure/clojurescript "1.9.89" :scope "provided"]
                  [com.cognitect/transit-cljs "0.8.239"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
-                 [org.omcljs/om "1.0.0-alpha44"]
+                 [org.omcljs/om "1.0.0-alpha45"]
                  [figwheel-sidecar "0.5.7" :scope "test"]]
 
   :plugins [[lein-cljsbuild "1.1.3"]]
